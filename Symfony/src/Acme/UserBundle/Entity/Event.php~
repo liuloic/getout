@@ -1,0 +1,76 @@
+<?php
+
+namespace Acme\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Event
+ *
+ * @ORM\Table(name="event")
+ * @ORM\Entity
+ */
+class Event
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ev_id", type="integer", nullable=false, options={"unsigned"=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $evId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ev_name", type="string", length=45, nullable=false)
+     */
+    private $evName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ev_description", type="string", length=255, nullable=true)
+     */
+    private $evDescription;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="ev_begin_date", type="datetime", nullable=false)
+     */
+    private $evBeginDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="ev_end_date", type="datetime", nullable=false)
+     */
+    private $evEndDate;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Profile", mappedBy="eventEv")
+     */
+    private $profilePr;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Tag", mappedBy="eventEv")
+     */
+    private $tagTa;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->profilePr = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tagTa = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

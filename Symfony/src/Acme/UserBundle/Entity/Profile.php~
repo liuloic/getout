@@ -1,0 +1,117 @@
+<?php
+
+namespace Acme\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Profile
+ *
+ * @ORM\Table(name="profile", uniqueConstraints={@ORM\UniqueConstraint(name="pr_id_UNIQUE", columns={"pr_id"})}, indexes={@ORM\Index(name="us_id", columns={"us_id"})})
+ * @ORM\Entity
+ */
+class Profile
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pr_id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $prId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pr_name", type="string", length=30, nullable=false)
+     */
+    private $prName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pr_first_name", type="string", length=30, nullable=false)
+     */
+    private $prFirstName;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="pr_birthdate", type="date", nullable=false)
+     */
+    private $prBirthdate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pr_adress", type="string", length=255, nullable=true)
+     */
+    private $prAdress;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pr_country", type="string", length=45, nullable=true)
+     */
+    private $prCountry;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pr_phone", type="integer", nullable=true)
+     */
+    private $prPhone;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="us_id", referencedColumnName="id")
+     * })
+     */
+    private $us;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Event", inversedBy="profilePr")
+     * @ORM\JoinTable(name="profile_has_event",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="profile_pr_id", referencedColumnName="pr_id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="event_ev_id", referencedColumnName="ev_id")
+     *   }
+     * )
+     */
+    private $eventEv;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="profilePr")
+     * @ORM\JoinTable(name="profile_has_tag",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="profile_pr_id", referencedColumnName="pr_id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="tag_ta_id", referencedColumnName="ta_id")
+     *   }
+     * )
+     */
+    private $tagTa;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->eventEv = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tagTa = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+}
+

@@ -1,0 +1,63 @@
+<?php
+
+namespace Acme\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Tag
+ *
+ * @ORM\Table(name="tag", uniqueConstraints={@ORM\UniqueConstraint(name="ta_id_UNIQUE", columns={"ta_id"}), @ORM\UniqueConstraint(name="ta_name_UNIQUE", columns={"ta_name"})})
+ * @ORM\Entity
+ */
+class Tag
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ta_id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $taId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ta_name", type="string", length=45, nullable=true)
+     */
+    private $taName;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Profile", mappedBy="tagTa")
+     */
+    private $profilePr;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Event", inversedBy="tagTa")
+     * @ORM\JoinTable(name="tag_has_event",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="tag_ta_id", referencedColumnName="ta_id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="event_ev_id", referencedColumnName="ev_id")
+     *   }
+     * )
+     */
+    private $eventEv;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->profilePr = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->eventEv = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

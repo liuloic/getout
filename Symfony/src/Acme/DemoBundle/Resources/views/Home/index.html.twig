@@ -1,0 +1,261 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+	    <link href="{{ asset('css/bootstrap.min.css') }}" rel='stylesheet' />
+	    <link href="{{ asset('css/style.css') }}" rel='stylesheet' />
+	    <link href="{{ asset('css/fullcalendar.css') }}" rel='stylesheet' />
+	    <link href="{{ asset('css/fullcalendar.print.css') }}" rel='stylesheet' media='print' />
+
+        <script src="{{ asset('js/jquery.js') }}"></script> 
+    	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    	<script src="{{ asset('js/jquery.min.js') }}"></script>
+    	<script src="{{ asset('js/jquery-ui.custom.min.js') }}"></script>
+    	<script src="{{ asset('js/fullcalendar.min.js') }}"></script>
+{% endblock %}
+
+{% block title %}GetOut{% endblock %}
+
+{% block topbar %}
+		<nav class="navbar navbar-default" role="navigation">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#"><img src="{{ asset('images/logo-getout.png') }}"alt="logo GetOut" /></a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+
+
+	      <form class="navbar-form navbar-left" role="search">
+	        <div class="form-group">
+	          <input type="text" class="form-control">
+	        </div>
+	        <button type="submit" class="btn btn-default">Recherche</button>
+	      </form>
+
+
+
+	     <ul class="nav navbar-nav navbar-right">
+	     
+	  <ul class="nav navbar-nav">
+	        <li><a href="#">Evenements</a></li>
+	        <li><a href="#">Membres</a></li>
+	        <li><a href="#">Messages</a></li>
+
+	  <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">  <img src="{{ asset('images/harry.jpg') }}"alt="icone profil" /><b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+				<li><a href="{{ path('home_regles') }}" >Page du règlement</a></li>
+	            <li><a href="#">Hafed</a></li>
+	            <li><a href="#">Paramètres</a></li>
+	            <li><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a></li>
+	          </ul>
+	  </li>
+	  </ul>
+	      </ul>
+
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+{% endblock %}
+
+{% block body %}
+
+
+
+	<div class="container">
+		<div class="col-lg-3" style="margin-left: -6%; width: 19%;">
+
+			<div class="panel panel-default">
+				<!-- Default panel contents -->
+				<div class="panel-heading">Panel heading</div>
+
+				<!-- Table -->
+				<table class="table table-hover">
+					<tbody>
+						<tr>
+							<td><a href=""><img class="img-rounded" src="{{ asset('images/harry.jpg') }}"></a></td>
+							<td><div class="media-body name-friend"> Jean Michel</div></td>
+							<td><span class="badge">2</span></td>
+						</tr>
+						<tr>
+							<td><a href=""><img class="img-rounded" src="{{ asset('images/harry.jpg') }}"></a></td>
+							<td><div class="media-body"> Jean Michel</div></td>
+							<td><span class="badge">2</span></td>
+						</tr>
+						<tr>
+							<td><a href=""><img class="img-rounded" src="{{ asset('images/harry.jpg') }}"></a></td>
+							<td><div class="media-body"> Jean Michel</div></td>
+							<td><span class="badge">2</span></td>
+						</tr>
+						<tr>
+							<td><a href=""><img class="img-rounded" src="{{ asset('images/harry.jpg') }}"></a></td>
+							<td><div class="media-body"> Jean Michel</div></td>
+							<td><span class="badge">2</span></td>
+						</tr>
+						<tr>
+							<td><a href=""><img class="img-rounded" src="{{ asset('images/harry.jpg') }}"></a></td>
+							<td><div class="media-body"> Jean Michel</div></td>
+							<td><span class="badge">2</span></td>
+						</tr>
+						<tr>
+							<td><a href=""><img class="img-rounded" src="{{ asset('images/harry.jpg') }}"></a></td>
+							<td><div class="media-body"> Jean Michel</div></td>
+							<td><span class="badge">2</span></td>
+						</tr>
+						<tr>
+							<td><a href=""><img class="img-rounded" src="{{ asset('images/harry.jpg') }}"></a></td>
+							<td><div class="media-body"> Jean Michel</div></td>
+							<td><span class="badge">2</span></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+
+		<div class="col-lg-7">
+
+			<div class="panel panel-success">
+				<div class="panel-heading"><textarea class="form-control" rows="3" placeholder="Partagez vos envies"></textarea></div>
+				<div class="panel-body">
+
+					<div class="panel panel-default">
+						<div class="panel-heading"><a href="#">Jean Michel</a> a publié un statut</div>
+						<div class="panel-body">
+							Panel content
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading"><a href="#">Jean Michel</a> a crée un évènement</div>
+						<div class="panel-body">
+							Panel content
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading"><a href="#">Jean Michel</a> s'est inscrit à un évnement</div>
+						<div class="panel-body">
+							Panel content
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+
+		</div>
+
+		<div class="col-lg-2">
+			<div id='calendar'></div>
+		</div>
+
+	</div>
+        
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+{% endblock %}
+
+
+{% block footer %}
+	    <div class="fake-footer">
+	      <div class="col-footer">2714 personnes connectées<br>
+	                                     700 personnes en ligne
+	      </div>
+	      <div class="col-footer"><h6>À propos<h6>
+	              <a href="#" class="b-link">Conditions</a><br>
+	              <a href="#" class="b-link">Protection des données</a>
+	      </div>
+
+	      <div class="col-footer"><h6>Partage<h6>
+	              <a href="#" class="b-link"><img src="{{ asset('images/logo_facebook.png') }}" title="Facebook" alt="page Facebook"/></a>
+	              <a href="#" class="b-link"><img src="{{ asset('images/logo_twitter.png') }}" title="Twitter" alt="page Twitter"/></a>
+	              <a href="#" class="b-link"><img src="{{ asset('images/logo_google.png') }}" title="Google+" alt="page Google+"/></a>
+	      </div> 
+	    </div>      
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+	$(document).ready(function() {
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			editable: true,
+        
+	        // add event name to title attribute on mouseover
+	        eventMouseover: function(event, jsEvent, view) {
+	            if (view.name !== 'agendaDay') {
+	                $(jsEvent.target).attr('title', event.title);
+	            }
+	        },
+	        
+	        
+	        events: [
+				{
+					title: 'All Day Event',
+					start: new Date(y, m, 1)
+				},
+				{
+					title: 'Long Event',
+					start: new Date(y, m, d-5),
+					end: new Date(y, m, d-2)
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(y, m, d-3, 16, 0),
+					allDay: false
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(y, m, d+4, 16, 0),
+					allDay: false
+				},
+				{
+					title: 'Meeting',
+					start: new Date(y, m, d, 10, 30),
+					allDay: false
+				},
+				{
+					title: 'Lunch',
+					start: new Date(y, m, d, 12, 0),
+					end: new Date(y, m, d, 14, 0),
+					allDay: false
+				},
+				{
+					title: 'Birthday Party',
+					start: new Date(y, m, d+1, 19, 0),
+					end: new Date(y, m, d+1, 22, 30),
+					allDay: false
+				},
+				{
+					title: 'Click for Google',
+					start: new Date(y, m, 28),
+					end: new Date(y, m, 29),
+					url: 'http://google.com/'
+				}
+			]
+		});
+		
+	});
+</script>
+{% endblock %}
